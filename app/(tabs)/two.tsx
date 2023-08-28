@@ -1,15 +1,34 @@
-import { StyleSheet } from 'react-native';
-
-import EditScreenInfo from '../../components/EditScreenInfo';
-import { Text, View } from '../../components/Themed';
+import { KeyboardAvoidingView, Platform, StyleSheet } from 'react-native';
+import { Text, View } from '../../src/components/Themed';
+import { Button } from 'react-native-paper';
+import { useRouter } from 'expo-router';
+import { auth } from '../../config/firebase';
 
 export default function TabTwoScreen() {
+  const router = useRouter();
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'height' : undefined} style={styles.container}>
       <Text style={styles.title}>Tab Two</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="app/(tabs)/two.tsx" />
-    </View>
+      {/* <Button
+        onPress={() => {
+          router.push('/signIn');
+        }}
+      >
+        Login
+      </Button>
+      */}
+      <Button
+        onPress={() => {
+          auth.signOut;
+          router.replace('/(auth)/signIn');
+        }}
+      >
+        signOut
+      </Button>
+
+      {/* <EditScreenInfo path="app/(tabs)/two.tsx" /> */}
+    </KeyboardAvoidingView>
   );
 }
 
