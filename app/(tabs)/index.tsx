@@ -10,9 +10,10 @@ export default function TabOneScreen() {
   return (
     <View style={styles.container}>
       <FAB
+        style={{ alignSelf: 'flex-end', justifyContent: 'flex-end' }}
         icon={'message'}
         onPress={() => {
-          router.push('/chat');
+          router.push('/(auth)/chat');
         }}
       />
     </View>
@@ -21,8 +22,9 @@ export default function TabOneScreen() {
 
 const styles = StyleSheet.create({
   container: {
+    padding: 20,
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
   },
 });

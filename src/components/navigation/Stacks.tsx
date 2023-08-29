@@ -8,21 +8,14 @@ const Stacks = () => {
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
-      console.log('user', user);
       setUser(user);
     });
   });
 
   return (
     <Stack screenOptions={{ headerShown: false }}>
-      {user ? (
-        <>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="(route)" options={{ headerShown: false }} />
-        </>
-      ) : (
-        <Stack.Screen name="(auth)" options={{ headerShown: false }} />
-      )}
+      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      <Stack.Screen name="(auth)" options={{ headerShown: false }} />
     </Stack>
   );
 };

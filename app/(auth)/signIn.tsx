@@ -19,6 +19,7 @@ const LogInScreen = () => {
       console.log(error);
       alert('signIn  faild' + error.message);
     }
+    router.replace('/(tabs)/');
   };
   return (
     <View style={{ flex: 1, padding: Spacing.regular, gap: Spacing.regular, justifyContent: 'center' }}>

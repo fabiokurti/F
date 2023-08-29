@@ -8,16 +8,12 @@ import Spacing from '../../../resource/Spacing';
 import ReplyItem from '../../../resource/ReplyItem';
 
 interface Props {
-  reply: any;
-  closereply: any;
-  isSender?: boolean;
-  username: string | string[] | undefined;
   setValue: (((text: string) => void) & Function) | undefined;
   value: string;
   send: () => void;
 }
 
-const ChatsFooter = () => {
+const ChatsFooter = ({ setValue, value, send }: Props) => {
   const [newMssage, setNewmessage] = useState<string>('');
   // const {
   //   control,
@@ -36,13 +32,15 @@ const ChatsFooter = () => {
           placeholder="Type something"
           mode="outlined"
           style={styles.textInput}
+          value={value}
+          onChangeText={setValue}
           outlineStyle={{ borderRadius: 20 }}
           outlineColor={MATERIAL_COLORS.grey_200}
           placeholderTextColor={MATERIAL_COLORS.grey_400}
           activeOutlineColor={MATERIAL_COLORS.grey_400}
         />
 
-        <IconButton icon={'send'} iconColor={MATERIAL_COLORS.grey_700} style={{ alignSelf: 'flex-end' }} />
+        <IconButton icon={'send'} iconColor={MATERIAL_COLORS.grey_700} onPress={send} style={{ alignSelf: 'flex-end' }} />
       </SafeAreaView>
     </>
   );
