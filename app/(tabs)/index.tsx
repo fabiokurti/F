@@ -1,10 +1,13 @@
-import { SafeAreaView, StyleSheet, View } from 'react-native';
+import { SafeAreaView, StyleSheet, View, TextInput } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { FAB, Button, Card, Text } from 'react-native-paper';
 import { useRouter } from 'expo-router';
 import Spacing from '../../resource/Spacing';
+import React from 'react';
 
 export default function TabOneScreen() {
+  const [text, onChangeText] = React.useState('Search');
+
   const router = useRouter();
   return (
     <View style={{ backgroundColor: 'white', flex: 1 }}>
@@ -15,6 +18,11 @@ export default function TabOneScreen() {
             Edit Profile
           </Button>
         </View>
+        <TextInput
+        style={styles.input}
+        onChangeText={onChangeText}
+        value={text}
+      />
       </View>
       <View style={{ padding: Spacing.regular, gap: Spacing.regular, flexDirection: 'row' }}>
         <Card style={{ height: 130, backgroundColor: 'white', flex: 1, alignItems: 'center', padding: Spacing.regular }}>
@@ -45,5 +53,16 @@ const styles = StyleSheet.create({
   container: {
     padding: 20,
     flex: 1,
+  },
+  input: {
+    height: 40,
+    margin: 30,
+    borderRadius: 10,
+    borderWidth: 1,
+    padding: 10,
+    flex: 1,
+    backgroundColor: 'white',
+    paddingVertical: Spacing.regular, 
+    fontWeight: '700',
   },
 });
