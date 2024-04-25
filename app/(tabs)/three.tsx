@@ -9,13 +9,13 @@ export default function TabThreeScreen() {
   const router = useRouter();
   return (
     <View style={styles.container}>
-      <FAB
+      {/* <FAB
         style={{ alignSelf: 'flex-end', justifyContent: 'flex-end' }}
         icon={'message'}
         onPress={() => {
           router.push('/(auth)/chat');
         }}
-      />
+      /> */}
     </View>
   );
 }
