@@ -1,41 +1,64 @@
-import { StyleSheet, View } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import React, { useState } from 'react';
-import { auth } from '../../config/firebase';
-import { TextInput, Text, Button } from 'react-native-paper';
-import Spacing from '../../resource/Spacing';
 import { useRouter } from 'expo-router';
-import { signInWithEmailAndPassword } from 'firebase/auth';
 
 const LogInScreen = () => {
   const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const signIn = async () => {
-    try {
-      const response = await signInWithEmailAndPassword(auth, email, password);
-      console.log(response);
-    } catch (error: any) {
-      console.log(error);
-      alert('signIn  faild' + error.message);
+  const signIn = () => {
+    // Here you can implement your login logic with the provided credentials
+    // For simplicity, let's just check if email and password are not empty
+    if (email && password) {
+      // Navigate to the home screen
+    } else {
+      alert('Please enter both email and password.');
     }
     router.replace('/(tabs)/');
   };
+   
   return (
-    <View style={{ flex: 1, padding: Spacing.regular, gap: Spacing.regular, justifyContent: 'center' }}>
-      <Text variant="titleLarge" style={{ alignSelf: 'center' }}>
-        LOGIN
-      </Text>
-      <TextInput mode="outlined" placeholder="Email" value={email} onChangeText={(text: string) => setEmail(text)} />
-      <TextInput mode="outlined" placeholder="Password" secureTextEntry={true} value={password} onChangeText={(text: string) => setPassword(text)} />
-      <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-        <Button onPress={signIn}>Login</Button>
-        <Button onPress={() => router.push('/register')}>register</Button>
-      </View>
+    <View style={styles.container}>
+     <Text style={styles.title}>LOGIN</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Email"
+        value={email}
+        onChangeText={(text) => setEmail(text)}
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Password"
+        secureTextEntry={true}
+        value={password}
+        onChangeText={(text) => setPassword(text)}
+      />
+      <Button title="Login" onPress={signIn} />
+      <Button title="Register" onPress={() => router.push('/register')} />
     </View>
   );
 };
 
 export default LogInScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+  },
+  title: {
+    fontSize: 24,
+    marginBottom: 20,
+  },
+  input: {
+    width: '100%',
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    marginBottom: 10,
+    padding: 10,
+  },
+});
